@@ -1,0 +1,25 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: weather-api
+  labels:
+    app: weather-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: weather-api
+  template:
+    metadata:
+      labels:
+        app: weather-api
+    spec:
+      containers:
+        - name: weather-api
+          image: public.ecr.aws/y8k8e2i0/weather_api:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+              protocol: TCP
+            - containerPort: 443
+              protocol: TCP
