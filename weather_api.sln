@@ -14,6 +14,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{DB154F49-D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherApi", "src\WeatherApi\WeatherApi.csproj", "{FF177F1E-0813-4567-B303-E4A90BBD696E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{FBAFB4B9-C5C5-418B-BD5C-2594B7120645}"
+	ProjectSection(SolutionItems) = preProject
+		k8s\deployment.yaml = k8s\deployment.yaml
+		k8s\route.yaml = k8s\route.yaml
+		k8s\service.yaml = k8s\service.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

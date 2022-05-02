@@ -6,15 +6,11 @@ metadata:
   name: weather-api
 spec:
   ports:
-  - name: 80-tcp
-    port: 80
+  - name: 5000-tcp
+    port: 5000
     protocol: TCP
-    targetPort: 80
-  - name: 443-tcp
-    port: 443
-    protocol: TCP
-    targetPort: 443
+    targetPort: 5000
   selector:
     app: weather-api
   sessionAffinity: None
-  type: ClusterIP
+  type: LoadBalancer

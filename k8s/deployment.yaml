@@ -1,9 +1,7 @@
-kind: Deployment
 apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: weather-api
-  labels:
-    app: weather-api
 spec:
   replicas: 1
   selector:
@@ -14,12 +12,14 @@ spec:
       labels:
         app: weather-api
     spec:
+      env:
+      - name: ASPNETCORE_URLS
+        value: 'http://0.0.0.0:5000'
       containers:
-        - name: weather-api
-          image: public.ecr.aws/y8k8e2i0/weather_api:latest
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 80
-              protocol: TCP
-            - containerPort: 443
-              protocol: TCP
+      - name: weather-api
+        image: public.ecr.aws/y8k8e2i0/weather_api:latest
+        ports:
+        - containerPort: 5000
+          protocol: TCP
+        imagePullPolicy: Always
+      restartPolicy: Always
