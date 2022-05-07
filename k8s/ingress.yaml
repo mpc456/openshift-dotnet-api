@@ -6,12 +6,12 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - http:
-      paths:
-      - path: /quotespath
-        pathType: Prefix
-        backend:
-          service:
-            name: quotes
-            port:
-              number: 80
+    - http:
+        paths:
+          - path: /quotespath
+            pathType: Prefix
+            backend:
+              service:
+                name: quotes
+                port:
+                  number: 80
