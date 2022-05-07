@@ -17,9 +17,13 @@ spec:
         value: 'http://0.0.0.0:5000'
       containers:
       - name: weather-api
-        image: public.ecr.aws/y8k8e2i0/weather_api:latest
+        image: public.ecr.aws/y8k8e2i0/weather_api:v1
         ports:
         - containerPort: 5000
           protocol: TCP
         imagePullPolicy: Always
+        livenessProbe:
+            httpGet:
+                path: /healthChecks/liveness
+                port: 5000
       restartPolicy: Always
