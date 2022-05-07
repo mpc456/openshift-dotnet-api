@@ -13,17 +13,30 @@ spec:
         app: weather-api
     spec:
       env:
-      - name: ASPNETCORE_URLS
-        value: 'http://0.0.0.0:5000'
+        - name: ASPNETCORE_URLS
+          value: "http://0.0.0.0:5000"
       containers:
-      - name: weather-api
-        image: public.ecr.aws/y8k8e2i0/weather_api:v1
-        ports:
-        - containerPort: 5000
-          protocol: TCP
-        imagePullPolicy: Always
-        livenessProbe:
+        - name: weather-api
+          image: public.ecr.aws/y8k8e2i0/weather_api:v1
+          resources:
+            limits:
+              cpu: 100m
+              memory: 500Mi
+              ephemeral-storage: 1Gi
+          ports:
+            - containerPort: 5000
+              protocol: TCP
+          imagePullPolicy: Always
+          readinessProbe:
             httpGet:
-                path: /healthChecks/liveness
-                port: 5000
+              path: /healthChecks/startup
+              port: 5000
+          livenessProbe:
+            httpGet:
+              path: /healthChecks/liveness
+              port: 5000
+          startupProbe:
+            httpGet:
+              path: /healthChecks/startup
+              port: 5000
       restartPolicy: Always
